@@ -11,6 +11,29 @@
   <body>
     <main id="solar-stage" aria-label="Sistema solar en 3D">
       <div id="scene-container" class="scene-container"></div>
+      <aside class="planet-panel" id="planet-panel" aria-hidden="true" aria-label="Información del planeta">
+        <div class="panel-handle" id="panel-handle" aria-hidden="true"></div>
+        <button class="panel-close" id="panel-close" type="button" aria-label="Cerrar información del planeta">×</button>
+        <div class="panel-content">
+          <p class="panel-kicker">OBJETO CELESTE <span id="panel-index">01 / 09</span></p>
+          <div class="planet-preview" aria-hidden="true">
+            <span class="preview-star preview-star-one"></span>
+            <span class="preview-star preview-star-two"></span>
+            <span class="preview-star preview-star-three"></span>
+            <span class="planet-preview-sphere" id="planet-preview-sphere"></span>
+          </div>
+          <div class="panel-heading">
+            <span class="panel-dot" id="panel-dot"></span>
+            <h2 id="panel-name">La Tierra</h2>
+          </div>
+          <p class="panel-type" id="panel-type">PLANETA ROCOSO</p>
+          <p class="panel-description" id="panel-description">Nuestro hogar: un punto azul lleno de vida.</p>
+          <div class="panel-detail-row">
+            <span>COLOR</span>
+            <strong id="panel-color">AZUL OCEANO</strong>
+          </div>
+        </div>
+      </aside>
     </main>
     <script type="module" src="/app.js"></script>
   </body>

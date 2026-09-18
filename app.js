@@ -4,15 +4,15 @@ import { CSS2DObject, CSS2DRenderer } from "three/addons/renderers/CSS2DRenderer
 
 const SPACE_PURPLE = 0x0d071c;
 const bodies = [
-  { id: "sun", name: "El Sol", color: 0xffb52f, labelColor: "#ffd477", radius: 1.55, distance: 0, emissive: 0xff7614 },
-  { id: "mercury", name: "Mercurio", color: 0x9b9991, labelColor: "#bdb9ae", radius: 0.23, distance: 2.8, phase: 0.55, inclination: 0.06, node: 0.22 },
-  { id: "venus", name: "Venus", color: 0xd79c59, labelColor: "#e1b979", radius: 0.36, distance: 4.05, phase: 2.5, inclination: -0.18, node: -0.34 },
-  { id: "earth", name: "La Tierra", color: 0x3f80a8, labelColor: "#75c4e7", radius: 0.42, distance: 5.35, phase: 4.25, inclination: 0.12, node: 0.46 },
-  { id: "mars", name: "Marte", color: 0xb65b42, labelColor: "#e07b5b", radius: 0.31, distance: 6.65, phase: 1.18, inclination: 0.3, node: -0.1 },
-  { id: "jupiter", name: "Júpiter", color: 0xc89d78, labelColor: "#e2bb91", radius: 0.88, distance: 8.7, phase: 3.05, inclination: -0.16, node: 0.6 },
-  { id: "saturn", name: "Saturno", color: 0xcab27e, labelColor: "#ebd39c", radius: 0.73, distance: 10.65, phase: 4.9, inclination: 0.23, node: -0.46, rings: true },
-  { id: "uranus", name: "Urano", color: 0x74c1c4, labelColor: "#9be4e2", radius: 0.54, distance: 12.35, phase: 5.65, inclination: -0.34, node: 0.26 },
-  { id: "neptune", name: "Neptuno", color: 0x466dc1, labelColor: "#82a6f5", radius: 0.53, distance: 14.05, phase: 2.1, inclination: 0.14, node: -0.68 },
+  { id: "sun", name: "El Sol", type: "Estrella", description: "La estrella que ilumina y mantiene unido todo el sistema solar.", colorName: "DORADO", preview: "radial-gradient(circle at 30% 27%, #fff4be 0 5%, #ffd477 24%, #ff9e31 62%, #b83d14 100%)", color: 0xffb52f, labelColor: "#ffd477", radius: 1.55, distance: 0, emissive: 0xff7614 },
+  { id: "mercury", name: "Mercurio", type: "Planeta rocoso", description: "El planeta mas pequeno y veloz, marcado por crateres antiguos.", colorName: "GRIS CALIDO", preview: "radial-gradient(circle at 30% 26%, #e0d7ce 0 5%, #a5a09a 42%, #5a5657 100%)", color: 0x9b9991, labelColor: "#bdb9ae", radius: 0.23, distance: 2.8, phase: 0.55, inclination: 0.06, node: 0.22 },
+  { id: "venus", name: "Venus", type: "Planeta rocoso", description: "Un mundo brillante cubierto por nubes densas y una atmosfera extrema.", colorName: "AMBAR", preview: "radial-gradient(circle at 29% 24%, #ffe0a1 0 4%, #d79c59 38%, #75442a 100%)", color: 0xd79c59, labelColor: "#e1b979", radius: 0.36, distance: 4.05, phase: 2.5, inclination: -0.18, node: -0.34 },
+  { id: "earth", name: "La Tierra", type: "Planeta rocoso", description: "Nuestro hogar: un punto azul lleno de oceanos, nubes y vida.", colorName: "AZUL OCEANO", preview: "radial-gradient(circle at 30% 26%, #d4f1ff 0 5%, #4fa2c7 34%, #27638e 60%, #13304f 100%)", color: 0x3f80a8, labelColor: "#75c4e7", radius: 0.42, distance: 5.35, phase: 4.25, inclination: 0.12, node: 0.46 },
+  { id: "mars", name: "Marte", type: "Planeta rocoso", description: "El planeta rojo, moldeado por polvo, volcanes y antiguos cauces.", colorName: "ROJO HIERRO", preview: "radial-gradient(circle at 30% 25%, #f0a079 0 5%, #b65b42 38%, #5b211f 100%)", color: 0xb65b42, labelColor: "#e07b5b", radius: 0.31, distance: 6.65, phase: 1.18, inclination: 0.3, node: -0.1 },
+  { id: "jupiter", name: "Jupiter", type: "Gigante gaseoso", description: "El gigante del sistema, con bandas de nubes y tormentas que duran siglos.", colorName: "CREMA Y COBRE", preview: "linear-gradient(170deg, #c38a62 0 13%, #eed6aa 14% 28%, #a9674f 29% 39%, #e4c399 40% 59%, #b97e61 60% 75%, #e7cda3 76% 100%)", color: 0xc89d78, labelColor: "#e2bb91", radius: 0.88, distance: 8.7, phase: 3.05, inclination: -0.16, node: 0.6 },
+  { id: "saturn", name: "Saturno", type: "Gigante gaseoso", description: "Un planeta de hielo y gas rodeado por un sistema de anillos luminosos.", colorName: "ARENA", preview: "linear-gradient(170deg, #ddc18d 0 18%, #a47a55 19% 32%, #e7d09c 33% 55%, #a47851 56% 69%, #e8d0a0 70% 100%)", color: 0xcab27e, labelColor: "#ebd39c", radius: 0.73, distance: 10.65, phase: 4.9, inclination: 0.23, node: -0.46, rings: true },
+  { id: "uranus", name: "Urano", type: "Gigante helado", description: "Un gigante helado de color aguamarina que gira casi de lado.", colorName: "AGUAMARINA", preview: "radial-gradient(circle at 30% 24%, #d0ffff 0 4%, #74c1c4 42%, #245e6d 100%)", color: 0x74c1c4, labelColor: "#9be4e2", radius: 0.54, distance: 12.35, phase: 5.65, inclination: -0.34, node: 0.26 },
+  { id: "neptune", name: "Neptuno", type: "Gigante helado", description: "El mundo azul mas lejano, con vientos que recorren su atmosfera.", colorName: "AZUL PROFUNDO", preview: "radial-gradient(circle at 29% 25%, #afc9ff 0 4%, #466dc1 40%, #142c75 100%)", color: 0x466dc1, labelColor: "#82a6f5", radius: 0.53, distance: 14.05, phase: 2.1, inclination: 0.14, node: -0.68 },
 ];
 
 const container = document.querySelector("#scene-container");
@@ -55,6 +55,7 @@ const systemGroup = new THREE.Group();
 scene.add(systemGroup);
 const planetGroups = new Map();
 const clickableMeshes = [];
+const meteorHitboxes = [];
 
 function createStarTexture(type) {
   const canvas = document.createElement("canvas");
@@ -261,11 +262,12 @@ function spawnMeteor() {
 
   const labelElement = document.createElement("div");
   labelElement.className = "meteor-label";
-  labelElement.textContent = meteorNames[Math.floor(Math.random() * meteorNames.length)];
+  const meteorName = meteorNames[Math.floor(Math.random() * meteorNames.length)];
+  labelElement.textContent = meteorName;
   const label = new CSS2DObject(labelElement);
   group.add(label);
   scene.add(group);
-  meteors.add({
+  const meteor = {
     group,
     glow,
     head,
@@ -280,7 +282,21 @@ function spawnMeteor() {
     phase: "travel",
     dust: null,
     dustElapsed: 0,
-  });
+    paused: false,
+    name: meteorName,
+    description: `Un visitante veloz de origen desconocido. Su nombre cifrado es «${meteorName}». Toca de nuevo la estrella para reanudar su viaje.`,
+  };
+  const hitbox = new THREE.Sprite(new THREE.SpriteMaterial({
+    transparent: true,
+    opacity: 0,
+    depthWrite: false,
+  }));
+  hitbox.scale.setScalar(8);
+  hitbox.userData.meteor = meteor;
+  meteor.hitbox = hitbox;
+  group.add(hitbox);
+  meteorHitboxes.push(hitbox);
+  meteors.add(meteor);
 }
 
 function updateMeteorTrail(meteor, position) {
@@ -309,6 +325,7 @@ function updateMeteorTrail(meteor, position) {
 
 function updateMeteors(delta) {
   for (const meteor of meteors) {
+    if (meteor.paused) continue;
     if (meteor.phase === "travel") {
       meteor.elapsed += delta;
       const progress = Math.min(meteor.elapsed / meteor.duration, 1);
@@ -318,6 +335,7 @@ function updateMeteors(delta) {
       const visibility = Math.max(0, Math.min(fadeIn, fadeOut));
       meteor.glow.position.copy(position);
       meteor.head.position.copy(position);
+      meteor.hitbox.position.copy(position);
       meteor.glow.material.opacity = 0.88 * visibility;
       meteor.head.material.opacity = visibility;
       meteor.trail.material.opacity = 0.8 * visibility;
@@ -329,7 +347,9 @@ function updateMeteors(delta) {
         meteor.phase = "dust";
         meteor.dust = createDustCloud(meteor.end, meteor.direction);
         meteor.group.add(meteor.dust.points);
-        meteor.group.remove(meteor.glow, meteor.head, meteor.trail, meteor.trailDust, meteor.label);
+        meteor.group.remove(meteor.glow, meteor.head, meteor.trail, meteor.trailDust, meteor.label, meteor.hitbox);
+        const hitboxIndex = meteorHitboxes.indexOf(meteor.hitbox);
+        if (hitboxIndex !== -1) meteorHitboxes.splice(hitboxIndex, 1);
       }
     } else {
       meteor.dustElapsed += delta;
@@ -343,6 +363,8 @@ function updateMeteors(delta) {
       meteor.dust.points.material.opacity = Math.max(0, 0.9 * (1 - meteor.dustElapsed / 1.15));
       if (meteor.dustElapsed >= 1.15) {
         scene.remove(meteor.group);
+        const hitboxIndex = meteorHitboxes.indexOf(meteor.hitbox);
+        if (hitboxIndex !== -1) meteorHitboxes.splice(hitboxIndex, 1);
         meteors.delete(meteor);
       }
     }
@@ -442,27 +464,120 @@ bodies.slice(1).forEach(createPlanet);
 
 const raycaster = new THREE.Raycaster();
 const pointer = new THREE.Vector2();
-let lastPointerDown = { x: 0, y: 0 };
+const solarStage = document.querySelector("#solar-stage");
+const planetPanel = document.querySelector("#planet-panel");
+const previewSphere = document.querySelector("#planet-preview-sphere");
+const panelHandle = document.querySelector("#panel-handle");
+let panelDragStart = null;
+let activeMeteor = null;
 
-function findBody(event) {
+const METEOR_PREVIEW = "radial-gradient(circle at 30% 25%, #ffffff 0 4%, #e9caff 22%, #a86bff 56%, #2b1160 100%)";
+
+function openPlanetPanel(body) {
+  if (activeMeteor) {
+    activeMeteor.paused = false;
+    activeMeteor = null;
+  }
+  const bodyIndex = String(bodies.indexOf(body) + 1).padStart(2, "0");
+  document.querySelector("#panel-index").textContent = `${bodyIndex} / 09`;
+  document.querySelector("#panel-name").textContent = body.name;
+  document.querySelector("#panel-type").textContent = body.type.toUpperCase();
+  document.querySelector("#panel-description").textContent = body.description;
+  document.querySelector("#panel-color").textContent = body.colorName;
+  document.querySelector("#panel-dot").style.background = body.labelColor;
+  document.querySelector("#panel-dot").style.boxShadow = `0 0 12px ${body.labelColor}`;
+  previewSphere.style.setProperty("--planet-preview", body.preview);
+  previewSphere.style.setProperty("--planet-shadow", `18px 18px 28px rgba(0, 0, 0, 0.52), -10px -12px 24px ${body.labelColor}55`);
+  planetPanel.classList.remove("is-meteor");
+  planetPanel.setAttribute("aria-hidden", "false");
+  solarStage.classList.add("is-panel-open");
+  solarStage.classList.remove("is-panel-expanded");
+  planetPanel.scrollTop = 0;
+}
+
+function openMeteorPanel(meteor) {
+  meteor.paused = true;
+  activeMeteor = meteor;
+  document.querySelector("#panel-index").textContent = "✦ / ∞";
+  document.querySelector("#panel-name").textContent = "Estrella Fugaz";
+  document.querySelector("#panel-type").textContent = "CUERPO TRANSITORIO";
+  document.querySelector("#panel-description").textContent = meteor.description;
+  document.querySelector("#panel-color").textContent = "VIOLETA";
+  document.querySelector("#panel-dot").style.background = "#d8b8ff";
+  document.querySelector("#panel-dot").style.boxShadow = "0 0 12px #d8b8ff";
+  previewSphere.style.setProperty("--planet-preview", METEOR_PREVIEW);
+  previewSphere.style.setProperty("--planet-shadow", "18px 18px 28px rgba(0, 0, 0, 0.52), -10px -12px 24px rgba(216, 184, 255, 0.55)");
+  planetPanel.classList.add("is-meteor");
+  planetPanel.setAttribute("aria-hidden", "false");
+  solarStage.classList.add("is-panel-open");
+  solarStage.classList.remove("is-panel-expanded");
+  planetPanel.scrollTop = 0;
+}
+
+function closePlanetPanel() {
+  if (activeMeteor) {
+    activeMeteor.paused = false;
+    activeMeteor = null;
+  }
+  planetPanel.classList.remove("is-meteor");
+  planetPanel.setAttribute("aria-hidden", "true");
+  solarStage.classList.remove("is-panel-open", "is-panel-expanded");
+}
+
+function findTarget(event) {
   const bounds = renderer.domElement.getBoundingClientRect();
   pointer.x = ((event.clientX - bounds.left) / bounds.width) * 2 - 1;
   pointer.y = -((event.clientY - bounds.top) / bounds.height) * 2 + 1;
   raycaster.setFromCamera(pointer, camera);
-  return raycaster.intersectObjects(clickableMeshes, false)[0]?.object.userData.body;
+  const hit = raycaster.intersectObjects([...clickableMeshes, ...meteorHitboxes], false)[0];
+  if (!hit) return null;
+  if (hit.object.userData.meteor) return { kind: "meteor", meteor: hit.object.userData.meteor };
+  return { kind: "planet", body: hit.object.userData.body };
+}
+
+function selectTarget(target) {
+  if (!target) return;
+  if (target.kind === "meteor") openMeteorPanel(target.meteor);
+  else openPlanetPanel(target.body);
 }
 
 renderer.domElement.addEventListener("pointermove", (event) => {
-  renderer.domElement.style.cursor = findBody(event) ? "pointer" : "grab";
+  renderer.domElement.style.cursor = findTarget(event) ? "pointer" : "grab";
 });
 
 renderer.domElement.addEventListener("pointerdown", (event) => {
-  lastPointerDown = { x: event.clientX, y: event.clientY };
+  selectTarget(findTarget(event));
 });
 
-renderer.domElement.addEventListener("pointerup", (event) => {
-  const moved = Math.hypot(event.clientX - lastPointerDown.x, event.clientY - lastPointerDown.y);
-  if (moved < 7 && findBody(event)) renderer.domElement.style.cursor = "pointer";
+renderer.domElement.addEventListener("click", (event) => {
+  const target = findTarget(event);
+  if (target) {
+    renderer.domElement.style.cursor = "pointer";
+    selectTarget(target);
+  }
+});
+
+document.querySelector("#panel-close").addEventListener("click", closePlanetPanel);
+document.addEventListener("keydown", (event) => {
+  if (event.key === "Escape") closePlanetPanel();
+});
+
+panelHandle.addEventListener("pointerdown", (event) => {
+  if (window.matchMedia("(max-width: 900px)").matches) {
+    panelDragStart = event.clientY;
+    panelHandle.setPointerCapture(event.pointerId);
+  }
+});
+
+panelHandle.addEventListener("pointerup", (event) => {
+  if (panelDragStart === null) return;
+  const delta = panelDragStart - event.clientY;
+  panelDragStart = null;
+  if (delta > 45) {
+    solarStage.classList.add("is-panel-expanded");
+  } else if (delta < -45) {
+    solarStage.classList.remove("is-panel-expanded");
+  }
 });
 
 function resize() {
