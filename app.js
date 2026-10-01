@@ -5,14 +5,18 @@ import { CSS2DObject, CSS2DRenderer } from "three/addons/renderers/CSS2DRenderer
 const SPACE_PURPLE = 0x0d071c;
 const bodies = [
   { id: "sun", name: "El Sol", type: "Estrella", description: "La estrella que ilumina y mantiene unido todo el sistema solar.", colorName: "DORADO", preview: "radial-gradient(circle at 30% 27%, #fff4be 0 5%, #ffd477 24%, #ff9e31 62%, #b83d14 100%)", color: 0xffb52f, labelColor: "#ffd477", radius: 1.55, distance: 0, emissive: 0xff7614 },
-  { id: "mercury", name: "Mercurio", type: "Planeta rocoso", description: "El planeta mas pequeno y veloz, marcado por crateres antiguos.", colorName: "GRIS CALIDO", preview: "radial-gradient(circle at 30% 26%, #e0d7ce 0 5%, #a5a09a 42%, #5a5657 100%)", color: 0x9b9991, labelColor: "#bdb9ae", radius: 0.23, distance: 2.8, phase: 0.55, inclination: 0.06, node: 0.22 },
-  { id: "venus", name: "Venus", type: "Planeta rocoso", description: "Un mundo brillante cubierto por nubes densas y una atmosfera extrema.", colorName: "AMBAR", preview: "radial-gradient(circle at 29% 24%, #ffe0a1 0 4%, #d79c59 38%, #75442a 100%)", color: 0xd79c59, labelColor: "#e1b979", radius: 0.36, distance: 4.05, phase: 2.5, inclination: -0.18, node: -0.34 },
-  { id: "earth", name: "La Tierra", type: "Planeta rocoso", description: "Nuestro hogar: un punto azul lleno de oceanos, nubes y vida.", colorName: "AZUL OCEANO", preview: "radial-gradient(circle at 30% 26%, #d4f1ff 0 5%, #4fa2c7 34%, #27638e 60%, #13304f 100%)", color: 0x3f80a8, labelColor: "#75c4e7", radius: 0.42, distance: 5.35, phase: 4.25, inclination: 0.12, node: 0.46 },
-  { id: "mars", name: "Marte", type: "Planeta rocoso", description: "El planeta rojo, moldeado por polvo, volcanes y antiguos cauces.", colorName: "ROJO HIERRO", preview: "radial-gradient(circle at 30% 25%, #f0a079 0 5%, #b65b42 38%, #5b211f 100%)", color: 0xb65b42, labelColor: "#e07b5b", radius: 0.31, distance: 6.65, phase: 1.18, inclination: 0.3, node: -0.1 },
-  { id: "jupiter", name: "Jupiter", type: "Gigante gaseoso", description: "El gigante del sistema, con bandas de nubes y tormentas que duran siglos.", colorName: "CREMA Y COBRE", preview: "linear-gradient(170deg, #c38a62 0 13%, #eed6aa 14% 28%, #a9674f 29% 39%, #e4c399 40% 59%, #b97e61 60% 75%, #e7cda3 76% 100%)", color: 0xc89d78, labelColor: "#e2bb91", radius: 0.88, distance: 8.7, phase: 3.05, inclination: -0.16, node: 0.6 },
-  { id: "saturn", name: "Saturno", type: "Gigante gaseoso", description: "Un planeta de hielo y gas rodeado por un sistema de anillos luminosos.", colorName: "ARENA", preview: "linear-gradient(170deg, #ddc18d 0 18%, #a47a55 19% 32%, #e7d09c 33% 55%, #a47851 56% 69%, #e8d0a0 70% 100%)", color: 0xcab27e, labelColor: "#ebd39c", radius: 0.73, distance: 10.65, phase: 4.9, inclination: 0.23, node: -0.46, rings: true },
-  { id: "uranus", name: "Urano", type: "Gigante helado", description: "Un gigante helado de color aguamarina que gira casi de lado.", colorName: "AGUAMARINA", preview: "radial-gradient(circle at 30% 24%, #d0ffff 0 4%, #74c1c4 42%, #245e6d 100%)", color: 0x74c1c4, labelColor: "#9be4e2", radius: 0.54, distance: 12.35, phase: 5.65, inclination: -0.34, node: 0.26 },
-  { id: "neptune", name: "Neptuno", type: "Gigante helado", description: "El mundo azul mas lejano, con vientos que recorren su atmosfera.", colorName: "AZUL PROFUNDO", preview: "radial-gradient(circle at 29% 25%, #afc9ff 0 4%, #466dc1 40%, #142c75 100%)", color: 0x466dc1, labelColor: "#82a6f5", radius: 0.53, distance: 14.05, phase: 2.1, inclination: 0.14, node: -0.68 },
+  { id: "planet-1", name: "Noviembre", type: "Planeta", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", colorName: "LILA", preview: "radial-gradient(circle at 30% 25%, #e9d5ff 0 5%, #a76bea 45%, #3d1b72 100%)", image: "/planets/noviembre.jpg", color: 0x9a62d6, labelColor: "#d6b3ff", radius: 0.28, distance: 2.65, phase: 0.42, inclination: 0.08, node: 0.2, spinAxis: [1, 0.2, 0.1], spinSpeed: 0.42 },
+  { id: "planet-2", name: "Diciembre", type: "Planeta", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", colorName: "AZUL", preview: "radial-gradient(circle at 30% 25%, #b8e7ff 0 5%, #3d8ac5 46%, #12345e 100%)", image: "/planets/diciembre.jpg", color: 0x3c83bb, labelColor: "#8ed4ff", radius: 0.36, distance: 3.85, phase: 2.56, inclination: -0.2, node: -0.34, spinAxis: [0.2, 1, 0.15], spinSpeed: 0.54 },
+  { id: "planet-3", name: "Enero", type: "Planeta", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", colorName: "CORAL", preview: "radial-gradient(circle at 29% 24%, #ffd0c7 0 4%, #e16f68 42%, #6b252d 100%)", image: "/planets/enero.jpg", color: 0xd76968, labelColor: "#ffaaa1", radius: 0.48, distance: 5.05, phase: 4.2, inclination: 0.14, node: 0.46, spinAxis: [0.3, 0.1, 1], spinSpeed: 0.36 },
+  { id: "planet-4", name: "Febrero", type: "Planeta", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", colorName: "VERDE", preview: "radial-gradient(circle at 30% 25%, #d2ffd7 0 5%, #4eaa76 40%, #194b42 100%)", image: "/planets/febrero.jpg", color: 0x50a875, labelColor: "#9affc2", radius: 0.58, distance: 6.3, phase: 1.06, inclination: 0.3, node: -0.1, spinAxis: [1, 0.4, 0.2], spinSpeed: 0.47 },
+  { id: "planet-11", name: "Marzo", type: "Planeta", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", colorName: "MAGENTA", preview: "radial-gradient(circle at 30% 25%, #ffd0fa 0 5%, #c34fa9 44%, #5a164d 100%)", image: "/planets/marzo.jpg", color: 0xc34fa9, labelColor: "#ff9be7", radius: 0.63, distance: 14.65, phase: 3.65, inclination: -0.14, node: 0.18, spinAxis: [0.6, 1, 0.2], spinSpeed: 0.5 },
+  { id: "planet-5", name: "Abril", type: "Planeta", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", colorName: "AMARILLO", preview: "radial-gradient(circle at 28% 24%, #fff6b8 0 5%, #d8ad42 43%, #704724 100%)", image: "/planets/abril.jpg", color: 0xd8ad42, labelColor: "#ffe58c", radius: 0.7, distance: 7.55, phase: 3.02, inclination: -0.17, node: 0.6, spinAxis: [0.2, 1, 0.4], spinSpeed: 0.31 },
+  { id: "planet-9", name: "Mayo", type: "Planeta", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", colorName: "VIOLETA", preview: "radial-gradient(circle at 30% 25%, #e8c9ff 0 5%, #8951c9 45%, #30164f 100%)", image: "/planets/mayo.jpg", color: 0x8951c9, labelColor: "#d7a9ff", radius: 0.76, distance: 12.45, phase: 2.4, inclination: -0.26, node: 0.37, spinAxis: [0.7, 0.1, 1], spinSpeed: 0.45 },
+  { id: "planet-6", name: "Junio", type: "Planeta", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", colorName: "ROJO", preview: "radial-gradient(circle at 30% 25%, #ffbaa7 0 5%, #bd4f63 43%, #521f3b 100%)", image: "/planets/junio.jpg", color: 0xbd4f63, labelColor: "#ff9bb0", radius: 0.82, distance: 8.85, phase: 4.82, inclination: 0.25, node: -0.46, spinAxis: [0.4, 0.2, 1], spinSpeed: 0.39 },
+  { id: "planet-7", name: "Julio", type: "Planeta", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", colorName: "TURQUESA", preview: "radial-gradient(circle at 30% 25%, #c7ffff 0 5%, #45b9b3 44%, #164d62 100%)", image: "/planets/julio.jpg", color: 0x45b9b3, labelColor: "#8fffea", radius: 0.94, distance: 10.1, phase: 1.7, inclination: -0.33, node: 0.26, spinAxis: [1, 0.7, 0.1], spinSpeed: 0.28 },
+  { id: "planet-8", name: "Agosto", type: "Planeta", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", colorName: "NARANJA", preview: "radial-gradient(circle at 29% 24%, #ffe0a9 0 5%, #df7d39 43%, #6e2b24 100%)", image: "/planets/agosto.jpg", color: 0xdf7d39, labelColor: "#ffc185", radius: 1.06, distance: 11.3, phase: 5.66, inclination: 0.17, node: -0.62, spinAxis: [0.1, 1, 0.7], spinSpeed: 0.34 },
+  { id: "planet-10", name: "Septiembre", type: "Planeta", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", colorName: "PLATA", preview: "radial-gradient(circle at 29% 25%, #ffffff 0 5%, #aab7c9 44%, #3d4a61 100%)", image: "/planets/septiembre.jpg", color: 0xaab7c9, labelColor: "#d8e4ff", radius: 1.18, distance: 13.55, phase: 5.1, inclination: 0.12, node: -0.72, spinAxis: [1, 0.3, 0.8], spinSpeed: 0.26 },
+  { id: "planet-12", name: "Octubre", type: "Planeta", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", colorName: "AZUL PROFUNDO", preview: "radial-gradient(circle at 29% 25%, #bcd8ff 0 5%, #4169c1 44%, #14245f 100%)", image: "/planets/octubre.jpg", color: 0x4169c1, labelColor: "#91b3ff", radius: 1.3, distance: 15.75, phase: 0.9, inclination: 0.32, node: -0.5, spinAxis: [0.3, 0.7, 1], spinSpeed: 0.3 },
 ];
 
 const container = document.querySelector("#scene-container");
@@ -20,8 +24,8 @@ const scene = new THREE.Scene();
 scene.background = new THREE.Color(SPACE_PURPLE);
 scene.fog = new THREE.FogExp2(SPACE_PURPLE, 0.0058);
 
-const camera = new THREE.PerspectiveCamera(42, 1, 0.1, 140);
-camera.position.set(0, 16, 29);
+const camera = new THREE.PerspectiveCamera(44, 1, 0.1, 140);
+camera.position.set(0, 19, 36);
 
 const renderer = new THREE.WebGLRenderer({ antialias: true, powerPreference: "high-performance" });
 renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
@@ -406,6 +410,7 @@ function createLabel(body) {
 
 function createSun(body) {
   const group = new THREE.Group();
+  const label = createLabel(body);
   const glow = new THREE.Mesh(
     new THREE.SphereGeometry(body.radius * 1.25, 32, 32),
     new THREE.MeshBasicMaterial({ color: 0xffa51e, transparent: true, opacity: 0.08, blending: THREE.AdditiveBlending, depthWrite: false }),
@@ -414,9 +419,11 @@ function createSun(body) {
     new THREE.SphereGeometry(body.radius, 48, 48),
     new THREE.MeshStandardMaterial({ color: body.color, emissive: body.emissive, emissiveIntensity: 1.8, roughness: 0.72 }),
   );
-  group.add(glow, mesh, createLabel(body));
+  group.add(glow, mesh);
+  label.position.set(0, body.radius + 0.28, 0);
   mesh.userData.body = body;
   systemGroup.add(group);
+  systemGroup.add(label);
   planetGroups.set(body.id, group);
   clickableMeshes.push(mesh);
 }
@@ -429,19 +436,14 @@ function createPlanet(body, index) {
 
   const group = new THREE.Group();
   group.position.set(Math.cos(body.phase) * body.distance, 0, Math.sin(body.phase) * body.distance);
+  group.userData.spinAxis = new THREE.Vector3(...body.spinAxis).normalize();
+  group.userData.spinSpeed = body.spinSpeed;
   const mesh = new THREE.Mesh(
     new THREE.SphereGeometry(body.radius, 32, 24),
     new THREE.MeshStandardMaterial({ color: body.color, roughness: 0.78, metalness: 0.02 }),
   );
   mesh.userData.body = body;
   group.add(mesh);
-
-  if (body.id === "earth") {
-    group.add(new THREE.Mesh(
-      new THREE.SphereGeometry(body.radius * 1.08, 32, 24),
-      new THREE.MeshBasicMaterial({ color: 0x7fd7ff, transparent: true, opacity: 0.12, blending: THREE.AdditiveBlending, side: THREE.BackSide }),
-    ));
-  }
 
   if (body.rings) {
     const rings = new THREE.Mesh(
@@ -453,8 +455,12 @@ function createPlanet(body, index) {
     group.add(rings);
   }
 
-  group.add(createLabel(body));
+  const label = createLabel(body);
+  const labelPosition = group.position.clone().applyEuler(orbitPlane.rotation);
+  const labelOffset = new THREE.Vector3(0, body.radius + 0.18, 0).applyEuler(orbitPlane.rotation);
+  label.position.copy(labelPosition.add(labelOffset));
   orbitPlane.add(group);
+  systemGroup.add(label);
   planetGroups.set(body.id, group);
   clickableMeshes.push(mesh);
 }
@@ -467,6 +473,7 @@ const pointer = new THREE.Vector2();
 const solarStage = document.querySelector("#solar-stage");
 const planetPanel = document.querySelector("#planet-panel");
 const previewSphere = document.querySelector("#planet-preview-sphere");
+const panelPlanetImage = document.querySelector("#panel-planet-image");
 const panelHandle = document.querySelector("#panel-handle");
 let panelDragStart = null;
 let activeMeteor = null;
@@ -478,8 +485,8 @@ function openPlanetPanel(body) {
     activeMeteor.paused = false;
     activeMeteor = null;
   }
-  const bodyIndex = String(bodies.indexOf(body) + 1).padStart(2, "0");
-  document.querySelector("#panel-index").textContent = `${bodyIndex} / 09`;
+  const bodyIndex = body.id === "sun" ? "SOL" : String(bodies.indexOf(body)).padStart(2, "0");
+  document.querySelector("#panel-index").textContent = `${bodyIndex} / 12`;
   document.querySelector("#panel-name").textContent = body.name;
   document.querySelector("#panel-type").textContent = body.type.toUpperCase();
   document.querySelector("#panel-description").textContent = body.description;
@@ -488,6 +495,11 @@ function openPlanetPanel(body) {
   document.querySelector("#panel-dot").style.boxShadow = `0 0 12px ${body.labelColor}`;
   previewSphere.style.setProperty("--planet-preview", body.preview);
   previewSphere.style.setProperty("--planet-shadow", `18px 18px 28px rgba(0, 0, 0, 0.52), -10px -12px 24px ${body.labelColor}55`);
+  panelPlanetImage.style.display = "none";
+  panelPlanetImage.onload = () => { panelPlanetImage.style.display = "block"; };
+  panelPlanetImage.onerror = () => { panelPlanetImage.style.display = "none"; };
+  if (body.image) panelPlanetImage.src = body.image;
+  else panelPlanetImage.removeAttribute("src");
   planetPanel.classList.remove("is-meteor");
   planetPanel.setAttribute("aria-hidden", "false");
   solarStage.classList.add("is-panel-open");
@@ -507,6 +519,8 @@ function openMeteorPanel(meteor) {
   document.querySelector("#panel-dot").style.boxShadow = "0 0 12px #d8b8ff";
   previewSphere.style.setProperty("--planet-preview", METEOR_PREVIEW);
   previewSphere.style.setProperty("--planet-shadow", "18px 18px 28px rgba(0, 0, 0, 0.52), -10px -12px 24px rgba(216, 184, 255, 0.55)");
+  panelPlanetImage.style.display = "none";
+  panelPlanetImage.removeAttribute("src");
   planetPanel.classList.add("is-meteor");
   planetPanel.setAttribute("aria-hidden", "false");
   solarStage.classList.add("is-panel-open");
@@ -584,8 +598,8 @@ function resize() {
   const width = container.clientWidth;
   const height = container.clientHeight;
   const mobile = width < 600;
-  camera.fov = mobile ? 54 : 42;
-  camera.position.set(0, mobile ? 24 : 16, mobile ? 56 : 29);
+  camera.fov = mobile ? 54 : 44;
+  camera.position.set(0, mobile ? 28 : 19, mobile ? 68 : 36);
   camera.aspect = width / height;
   camera.updateProjectionMatrix();
   renderer.setSize(width, height, false);
@@ -605,6 +619,11 @@ function animate() {
   const sun = planetGroups.get("sun");
   sun.rotation.y = elapsed * 0.04;
   sun.children[0].scale.setScalar(1 + Math.sin(elapsed * 1.55) * 0.035);
+  bodies.forEach((body) => {
+    if (!body.spinAxis) return;
+    const planet = planetGroups.get(body.id);
+    planet.rotateOnAxis(planet.userData.spinAxis, planet.userData.spinSpeed * delta);
+  });
   updateMeteors(delta);
   controls.update();
   renderer.render(scene, camera);
