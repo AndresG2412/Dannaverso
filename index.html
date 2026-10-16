@@ -2,38 +2,47 @@
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#111315" />
-    <meta name="description" content="Sistema solar 3D interactivo." />
-    <title>Sistema solar 3D</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="theme-color" content="#0d071c" />
+    <meta name="description" content="Doce meses, doce planetas: nuestro universo." />
+    <title>Dannaverso</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Literata:ital,opsz,wght@0,7..72,300..700;1,7..72,300..600&display=swap"
+    />
     <link rel="stylesheet" href="/styles.css" />
   </head>
   <body>
-    <main id="solar-stage" aria-label="Sistema solar en 3D">
+    <main id="solar-stage" class="is-intro" aria-label="Dannaverso en 3D">
       <div id="scene-container" class="scene-container"></div>
-      <aside class="planet-panel" id="planet-panel" aria-hidden="true" aria-label="Información del planeta">
-        <div class="panel-handle" id="panel-handle" aria-hidden="true"></div>
-        <button class="panel-close" id="panel-close" type="button" aria-label="Cerrar información del planeta">×</button>
-        <div class="panel-content">
-          <p class="panel-kicker">OBJETO CELESTE <span id="panel-index">01 / 12</span></p>
-          <div class="planet-preview" aria-hidden="true">
-            <span class="preview-star preview-star-one"></span>
-            <span class="preview-star preview-star-two"></span>
-            <span class="preview-star preview-star-three"></span>
-            <span class="planet-preview-sphere" id="planet-preview-sphere"></span>
+      <aside class="planet-panel" id="planet-panel" aria-labelledby="panel-name" tabindex="-1" inert>
+        <div class="panel-grip" id="panel-grip" aria-hidden="true"></div>
+        <button class="panel-close" id="panel-close" type="button" aria-label="Cerrar">
+          <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 3.5l9 9M12.5 3.5l-9 9" /></svg>
+        </button>
+        <div class="panel-scroll" id="panel-scroll">
+          <figure class="panel-photo" id="panel-photo">
+            <span class="planet-preview-sphere" id="planet-preview-sphere" aria-hidden="true"></span>
             <img class="panel-planet-image" id="panel-planet-image" alt="" />
-          </div>
-          <div class="panel-heading">
-            <span class="panel-dot" id="panel-dot"></span>
-            <h2 id="panel-name">La Tierra</h2>
-          </div>
-          <p class="panel-type" id="panel-type">PLANETA ROCOSO</p>
-          <p class="panel-description" id="panel-description">Nuestro hogar: un punto azul lleno de vida.</p>
-          <div class="panel-detail-row">
-            <span>COLOR</span>
-            <strong id="panel-color">AZUL OCEANO</strong>
-          </div>
+          </figure>
+          <header class="panel-header">
+            <h2 id="panel-name">Octubre</h2>
+            <p class="panel-meta"><span class="panel-dot" aria-hidden="true"></span><span id="panel-meta">Mes 1 de 12</span></p>
+          </header>
+          <p class="panel-letter" id="panel-description"></p>
         </div>
+        <nav class="panel-nav" id="panel-nav" aria-label="Otros meses">
+          <button class="nav-step nav-prev" id="nav-prev" type="button">
+            <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M10 3.5L5.5 8l4.5 4.5" /></svg>
+            <span><small>Anterior</small><strong id="nav-prev-name"></strong></span>
+          </button>
+          <button class="nav-step nav-next" id="nav-next" type="button">
+            <span><small>Siguiente</small><strong id="nav-next-name"></strong></span>
+            <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M6 3.5L10.5 8 6 12.5" /></svg>
+          </button>
+        </nav>
       </aside>
     </main>
     <script type="module" src="/app.js"></script>

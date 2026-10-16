@@ -4,3 +4,4 @@ dist/
 .playwright-mcp/
 solar-system-desktop.png
 *.log
+.DS_Store
